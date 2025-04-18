@@ -12,8 +12,8 @@ const RatingFetch = () => {
   const [allrating, setallrating] = useState([]);
   // Fetch random images and their ratings from the backend
   const getRandomImages = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/get-ratings");
+    try { 
+      const response = await fetch(`${backendUrl}/api/get-ratings`);
       const data = await response.json();
       if (Array.isArray(data) && data.length === 2) {
         const images = data.map((item) => item.Filename);
@@ -71,7 +71,7 @@ const RatingFetch = () => {
 
     // Update the backend with the new rating
     try {
-      const response = await fetch("http://localhost:5000/api/update-rating", {
+      const response = await fetch(`${backendUrl}/api/update-rating`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -139,7 +139,7 @@ const RatingFetch = () => {
                 className="bg-gray-200 p-4 rounded-lg w-1/4 max-w-[350px] min-w-[400px]"
               >
                 <img
-                  src={`./Images/${image}`}
+                  src={`/Images/${image}`}
                   alt={`random-image-${index}`}
                   onClick={() => select(randomImages, ratingsData, index)}
                   className="cursor-pointer rounded-lg"
